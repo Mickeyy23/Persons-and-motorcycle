@@ -84,7 +84,8 @@ app.post('/motorcycle-party', (req, res) => {
   motorcycleParty = {
     partyName,
     location,
-    date
+    date,
+    attendees: [] // Reset attendees list when updating party details
   };
 
   // Logging the received party data
@@ -93,6 +94,82 @@ app.post('/motorcycle-party', (req, res) => {
   // Sending back a response
   res.status(200).json({ message: 'Motorcycle party details received successfully.' });
 });
+
+// PUT endpoint to update a person's information
+app.put('/person/update', (req, res) => {
+    const { name, lastName, motorcycle, year, motorcycleType } = req.body;
+  
+    if (!name || !lastName) {
+      return res.status(400).json({ error: 'Please provide name and last name to update a person.' });
+    }
+  
+    let existingPerson = persons.find(person => person.name === name && person.lastName === lastName);
+  
+    if (existingPerson) {
+      existingPerson.motorcycle = motorcycle || existingPerson.motorcycle;
+      existingPerson.year = year || existingPerson.year;
+      existingPerson.motorcycleType = motorcycleType || existingPerson.motorcycleType;
+  
+      return res.status(200).json({ message: 'Person updated successfully.', updatedPerson: existingPerson });
+    } else {
+      return res.status(404).json({ error: 'Person not found.' });
+    }
+  });
+
+// DELETE endpoint to remove a person
+app.delete('/person/delete', (req, res) => {
+    const { name, lastName } = req.body;
+  
+    if (!name || !lastName) {
+      return res.status(400).json({ error: 'Please provide name and last name to delete a person.' });
+    }
+  
+    const personIndex = persons.findIndex(person => person.name === name && person.lastName === lastName);
+  
+    if (personIndex !== -1) {
+      persons.splice(personIndex, 1);
+      return res.status(200).json({ message: 'Person deleted successfully.' });
+    } else {
+      return res.status(404).json({ error: 'Person not found.' });
+    }
+  });
+
+// PUT endpoint to update motorcycle party information
+app.put('/motorcycle-party/update', (req, res) => {
+    const { partyName, location, date } = req.body;
+  
+    if (!partyName || !location || !date) {
+      return res.status(400).json({ error: 'Please provide all required information to update the motorcycle party.' });
+    }
+  
+    // Update motorcycle party information
+    motorcycleParty.partyName = partyName;
+    motorcycleParty.location = location;
+    motorcycleParty.date = date;
+  
+    // Logging the updated party data
+    console.log('Updated Motorcycle Party:', motorcycleParty);
+  
+    // Sending back a response
+    res.status(200).json({ message: 'Motorcycle party details updated successfully.' });
+  });
+
+// DELETE endpoint to delete motorcycle party information
+app.delete('/motorcycle-party/delete', (req, res) => {
+    // Clear motorcycle party details
+    motorcycleParty = {
+      partyName: "",
+      location: "",
+      date: "",
+      attendees: [] // Empty attendees list
+    };
+  
+    // Logging the deletion of party data
+    console.log('Deleted Motorcycle Party');
+  
+    // Sending back a response
+    res.status(200).json({ message: 'Motorcycle party details deleted successfully.' });
+  });
 
 // GET endpoint to retrieve all persons
 app.get('/persons', (req, res) => {
