@@ -1,0 +1,40 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment configuration
+.env
+
+# Dependency directories
+/bin/
+/coverage/
+/lib-cov/
+/build/
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+db@5.0.0
+express@^4.18.2
+body-parser@^1.20.2
+
+# MySQL database backups
+*.mysql@2.18.1
+*.mysql2@3.6.5
+
+# OS generated files
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
