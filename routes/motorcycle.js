@@ -30,14 +30,14 @@ router.get('/:id', async (req, res) => {
 
 // POST endpoint to add a new motorcycle
 router.post('/add', async (req, res) => {
-  const { persons_id, motorcycle, motorcycleModel, Year } = req.body; // Include persons_id from the request body
+  const { personsId, motorcycle, motorcycleModel, year } = req.body; // Include persons_id from the request body
 
-  if (!persons_id || !motorcycle || !motorcycleModel || !Year) {
+  if (!personsId || !motorcycle || !motorcycleModel || !year) {
     return res.status(400).json({ error: 'Please provide all required information for the motorcycle.' });
   }
 
   try {
-    await pool.query('INSERT INTO motorcycle (persons_id, motorcycle, motorcycleModel, Year) VALUES (?, ?, ?, ?)', [persons_id, motorcycle, motorcycleModel, Year]);
+    await pool.query('INSERT INTO motorcycle (personsId, motorcycle, motorcycleModel, year) VALUES (?, ?, ?, ?)', [persons_id, motorcycle, motorcycleModel, Year]);
     res.status(201).json({ message: 'Motorcycle added successfully.' });
   } catch (err) {
     console.error('Error executing query:', err);
@@ -47,9 +47,9 @@ router.post('/add', async (req, res) => {
 // PUT endpoint to update a motorcycle by ID
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { motorcycle, motorcycleModel, Year } = req.body;
+  const { personsId, motorcycle, motorcycleModel, Year } = req.body;
 
-  if (!motorcycle && !motorcycleModel && !Year) {
+  if (!motorcycleBrand && !motorcycleModel && !Year) {
     return res.status(400).json({ error: 'Please provide data to update the motorcycle.' });
   }
 

@@ -19,6 +19,20 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/motorcycle', async (req, res) => {
+  try {
+    const query = 'SELECT persons.*, motorcycle.* FROM persons LEFT JOIN motorcycle ON persons.id = motorcycle.personsId';
+
+    const [rows, fields] = await pool.query(query);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.error('Error executing query:', err);
+    res.status(500).json({ error: 'Failed to retrieve data.' });
+  }
+});
+
+
+
 
 router.post('/', async (req, res) => {
   const { firstName, lastName } = req.body;
@@ -55,9 +69,9 @@ router.post('/', async (req, res) => {
 
 });
 
-router.post('/:personId/motorcycles', async (req, res) => {
+router.post('/:personsId/motorcycles', async (req, res) => {
   const { personId } = req.params;
-  const { motorcycleBrand, motorcycleModel, year } = req.body;
+  const { motorcycleBrand,personsId, motorcycleModel, year } = req.body;
 
   if (!motorcycleBrand || !motorcycleModel || !year) {
     return res.status(400).json({ error: 'Please provide all required information for the motorcycle.' });
@@ -65,15 +79,14 @@ router.post('/:personId/motorcycles', async (req, res) => {
 
   try {
     // Check if the person exists
-    const [person] = await pool.query('SELECT * FROM persons WHERE id = ?', [personId]);
+    const [person] = await pool.query('SELECT * FROM persons WHERE id = ?', [personsId]);
     if (person.length === 0) {
-      return res.status(404).json({ error: 'Person not found.' });
+      return res.status(404).json({  personsId, persons });
     }
 
     // Add the motorcycle for the specific person
-    await pool.query(
-      'INSERT INTO motorcycles (personId, motorcycleBrand, motorcycleModel, year) VALUES (?, ?, ?, ?)',
-      [personId, motorcycleBrand, motorcycleModel, year]
+    await pool.query('INSERT INTO motorcycle (personsId, motorcycleBrand, motorcycleModel, year) VALUES (?, ?, ?, ?)',
+      [personsId, motorcycleBrand, motorcycleModel, year]
     );
 
     res.status(201).json({ message: 'Motorcycle added successfully for the person.' });
