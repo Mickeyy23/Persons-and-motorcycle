@@ -71,9 +71,9 @@ router.post('/', async (req, res) => {
 
 router.post('/:personsId/motorcycles', async (req, res) => {
   const { personId } = req.params;
-  const { motorcycleBrand,personsId, motorcycleModel, year } = req.body;
+  const { motorcycle,personsId, motorcycleModel, year } = req.body;
 
-  if (!motorcycleBrand || !motorcycleModel || !year) {
+  if (!motorcycle || !motorcycleModel || !year) {
     return res.status(400).json({ error: 'Please provide all required information for the motorcycle.' });
   }
 
@@ -85,8 +85,8 @@ router.post('/:personsId/motorcycles', async (req, res) => {
     }
 
     // Add the motorcycle for the specific person
-    await pool.query('INSERT INTO motorcycle (personsId, motorcycleBrand, motorcycleModel, year) VALUES (?, ?, ?, ?)',
-      [personsId, motorcycleBrand, motorcycleModel, year]
+    await pool.query('INSERT INTO motorcycle (personsId, motorcycle, motorcycleModel, year) VALUES (?, ?, ?, ?)',
+      [personsId, motorcycle, motorcycleModel, year]
     );
 
     res.status(201).json({ message: 'Motorcycle added successfully for the person.' });

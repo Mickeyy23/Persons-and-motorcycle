@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/db');
 
+
+
+
 // GET all motorcycles
 router.get('/', async (req, res) => {
   try {
@@ -30,14 +33,18 @@ router.get('/:id', async (req, res) => {
 
 // POST endpoint to add a new motorcycle
 router.post('/add', async (req, res) => {
-  const { personsId, motorcycle, motorcycleModel, year } = req.body; // Include persons_id from the request body
+  const { motorcycle, motorcycleModel, year } = req.body;
 
-  if (!personsId || !motorcycle || !motorcycleModel || !year) {
+  console.log("Received Request Payload:", req.body);
+
+  // Add this log to check the received payload
+
+  if (!motorcycle || !motorcycleModel || !year) {
     return res.status(400).json({ error: 'Please provide all required information for the motorcycle.' });
   }
 
   try {
-    await pool.query('INSERT INTO motorcycle (personsId, motorcycle, motorcycleModel, year) VALUES (?, ?, ?, ?)', [persons_id, motorcycle, motorcycleModel, Year]);
+    await pool.query('INSERT INTO motorcycle (motorcycle, motorcycleModel, year) VALUES (?, ?, ?)', [motorcycle, motorcycleModel, year]);
     res.status(201).json({ message: 'Motorcycle added successfully.' });
   } catch (err) {
     console.error('Error executing query:', err);
@@ -47,9 +54,9 @@ router.post('/add', async (req, res) => {
 // PUT endpoint to update a motorcycle by ID
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { personsId, motorcycle, motorcycleModel, Year } = req.body;
+  const { motorcycle, motorcycleModel, year } = req.body;
 
-  if (!motorcycleBrand && !motorcycleModel && !Year) {
+  if (!motorcycle && !motorcycleModel && !year) {
     return res.status(400).json({ error: 'Please provide data to update the motorcycle.' });
   }
 
@@ -59,7 +66,7 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Motorcycle not found.' });
     }
 
-    await pool.query('UPDATE motorcycle SET motorcycle = ?, motorcycleModel = ?, Year = ? WHERE id = ?', [motorcycle, motorcycleModel, Year, id]);
+    await pool.query('UPDATE motorcycle SET motorcycle = ?, motorcycleModel = ?, year = ? WHERE id = ?', [motorcycle, motorcycleModel, year, id]);
     res.status(200).json({ message: 'Motorcycle details updated successfully.' });
   } catch (err) {
     console.error('Error executing query:', err);
@@ -84,5 +91,7 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete the motorcycle.' });
   }
 });
+
+
 
 module.exports = router;

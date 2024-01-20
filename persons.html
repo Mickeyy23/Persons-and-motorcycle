@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level HTML Template by Tooplate</title>
+    <!-- Load stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <link rel="stylesheet" href="css/tooplate-style.css">       
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>                           
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="tm-main-content" id="top">
+        <div class="tm-top-bar-bg"></div>
+        <div class="tm-top-bar" id="tm-top-bar">
+            <!-- Top Navbar -->
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand mr-auto" href="#">
+                            <img src="img/moto.jpg" alt="Site logo">
+                            Moto Veles
+                        </a>
+                        <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="persons.html">Persons</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="motorcycles.html">Motorcycles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="motorcycleparty.html">Motorcycle Party</a>
+                                </li>
+                            </ul>
+                        </div>                            
+                    </nav>            
+                </div>
+            </div>
+        </div>
+        
+        <div class="tm-section tm-bg-img" id="tm-section-1">
+            <div class="tm-bg-white ie-container-width-fix-2">
+             
+                <div class="container ie-h-align-center-fix">
+                    <div class="row">
+                        
+                        <div class="col-xs-12 ml-auto mr-auto ie-container-width-fix">
+                            <form id="addPersonForm" class="tm-search-form tm-section-pad-2">
+                                <div class="form-row tm-search-form-row">
+                                    <div class="form-group tm-form-element tm-form-element-100">
+                                        <i class="fa fa-user fa-2x tm-form-element-icon"></i>
+                                        <input name="firstName" type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group tm-form-element tm-form-element-100">
+                                        <i class="fa fa-user fa-2x tm-form-element-icon"></i>
+                                        <input name="lastName" type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                                    </div>
+                                    <div class="form-group tm-form-element tm-form-element-100">
+                                        <button id="addPersonButton" class="btn btn-primary tm-btn-search">Add person</button>
+                                    </div>
+                                    <div>
+                                        <label for="motorcyclesDropdown">Select Motorcycles:</label>
+                                        <select id="motorcyclesDropdown" multiple>
+                                            <!-- Options will be dynamically added here using JavaScript -->
+                                        </select>
+                                    </div>
+                                    
+                                
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>      
+                </div>
+            </div>                  
+        </div>
+    </div>
+    <!-- Display Persons Table -->
+    <div class="tm-section" id="tm-section-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 ml-auto mr-auto">
+                    <h2>Persons</h2>
+                    <table id="personsTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Action</th>
+                                <!-- Add more columns as needed based on your database schema -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be populated dynamically using JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display Persons with Motorcycles Table -->
+    <div class="tm-section" id="tm-section-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 ml-auto mr-auto">
+                    <h2>Persons with Motorcycles</h2>
+                    <table id="motorcycleTable" class="table">
+                        <thead>
+                            <tr>
+                            
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Motorcycle Brand</th>
+                                <th>Motorcycle Model</th>
+                                <th>Motorcycle Year</th>
+                                <th>Action</th>
+                            
+                                <!-- Add more columns as needed based on your database schema -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be populated dynamically using JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load JS files -->
+    <script src="js/jquery-1.11.3.min.js"></script>             
+    <script src="js/popper.min.js"></script>                    
+    <script src="js/bootstrap.min.js"></script>                 
+    <script src="js/datepicker.min.js"></script>                
+    <script src="js/jquery.singlePageNav.min.js"></script>      
+    <script src="slick/slick.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function setPageNav(){
+            if($(window).width() > 991) {
+                $('#tm-top-bar').singlePageNav({
+                    currentClass:'active',
+                    offset: 79
+                });   
+            }
+            else {
+                $('#tm-top-bar').singlePageNav({
+                    currentClass:'active',
+                    offset: 65
+                });   
+            }
+        }
+
+        // Function to populate the motorcycles multi-select dropdown
+async function populateMotorcyclesDropdown() {
+    try {
+        const response = await fetch('http://localhost:3000/motorcycles');
+        const motorcycles = await response.json();
+
+        const dropdown = document.getElementById('motorcyclesDropdown');
+
+        motorcycles.forEach((motorcycle) => {
+            const option = document.createElement('option');
+            option.value = motorcycle.id; // Assign the motorcycle ID as the option value
+            option.text = `${motorcycle.motorcycle} ${motorcycle.motorcycleModel} (${motorcycle.year})`;
+            dropdown.add(option);
+        });
+    } catch (error) {
+        console.error('Error fetching motorcycles:', error);
+    }
+}
+
+        function handleDeletePerson(personId) {
+    const confirmDelete = confirm('Are you sure you want to delete this person?');
+
+    if (confirmDelete) {
+        $.ajax({
+            type: 'DELETE',
+            url: `http://localhost:3000/persons/${personId}`,
+            success: function (response) {
+                console.log('Person deleted successfully:', response);
+                fetchPersons(); // Refresh the table after deleting a person
+                location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error deleting person:', textStatus, errorThrown);
+                console.log(jqXHR.responseText);
+            },
+            complete: function (jqXHR, textStatus) {
+                console.log("AJAX request complete. Status:", textStatus);
+            },
+        });
+    }
+}
+
+// Function to handle updating a person
+function handleUpdatePerson(personId) {
+    const firstName = prompt('Enter new first name:');
+    const lastName = prompt('Enter new last name:');
+
+    if (firstName && lastName) {
+        $.ajax({
+            type: 'PUT',
+            url: `http://localhost:3000/persons/${personId}`,
+            data: JSON.stringify({ personId, firstName, lastName }),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response) {
+                console.log('Person updated successfully:', response);
+                fetchPersons(); // Refresh the table after updating a person
+                location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error updating person:', textStatus, errorThrown);
+                console.log(jqXHR.responseText);
+            },
+            complete: function (jqXHR, textStatus) {
+                console.log("AJAX request complete. Status:", textStatus);
+            },
+        });
+    } else {
+        alert('Please provide both first name and last name.');
+    }
+}
+
+// Function to handle the form submission for adding a new person
+async function addPerson() {
+    // Get the values from the input fields
+    const firstName = $("#inputFirstName").val();
+    const lastName = $("#inputLastName").val();
+
+    // Get the selected motorcycles from the dropdown
+    const selectedMotorcycles = Array.from($("#motorcyclesDropdown option:selected")).map(option => option.value);
+    console.log('First Name:', firstName);
+    console.log('Last Name:', lastName);
+    console.log('Selected Motorcycles:', selectedMotorcycles);
+
+    // Check if both first name and last name are provided
+    if (firstName && lastName) {
+        // Create a data object with the form values and selected motorcycles
+        const formData = {
+            firstName: firstName,
+            lastName: lastName,
+            motorcycles: selectedMotorcycles.map(id => ({ id: id })),
+            
+        };
+    
+        try {
+            // Make an AJAX request to the API endpoint to add the person
+            const addPersonResponse = await fetch('http://localhost:3000/persons', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!addPersonResponse.ok) {
+                throw new Error(`Failed to add person. Status: ${addPersonResponse.status}`);
+            }
+
+            const addedPerson = await addPersonResponse.json();
+            console.log('Person added successfully:', addedPerson);
+            
+            // Optionally, you can update the UI or reload the data
+            fetchPersons(); // Assuming this function updates the persons table
+
+            // Clear the input fields
+            $("#inputFirstName").val("");
+            $("#inputLastName").val("");
+            // Reload the motorcycles dropdown to reflect any changes
+            populateMotorcyclesDropdown();
+
+        } catch (error) {
+            console.error('Error adding person:', error);
+        }
+    } else {
+        // Handle the case where either first name or last name is not provided
+        alert("Please provide both first name and last name.");
+    }
+}
+
+        // Function to fetch and populate persons table
+        async function fetchPersons() {
+    try {
+        const response = await fetch('http://localhost:3000/persons'); 
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        // Assuming this is your route to fetch persons
+        const personsData = await response.json();
+
+        const tableBody = document.getElementById('personsTable').getElementsByTagName('tbody')[0];
+
+        tableBody.innerHTML = '';
+
+        personsData.forEach(person => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = person.FirstName;
+            row.insertCell(1).textContent = person.LastName;
+            const actionCell = row.insertCell(2);
+
+        const updateButton = document.createElement('button');
+        updateButton.textContent = 'Update';
+        updateButton.addEventListener('click', () => handleUpdatePerson(person.id));
+        actionCell.appendChild(updateButton);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => handleDeletePerson(person.id));
+        actionCell.appendChild(deleteButton);
+            // Add more cells as needed based on your database schema
+        });
+    } catch (error) {
+        console.error('Error fetching persons:', error);
+    }
+}
+
+    $(document).ready(function() {
+    fetchPersons();
+});
+            
+
+        // Function to fetch and populate persons with motorcycles table
+        async function fetchPersonsWithMotorcycles() {
+        try {
+        console.log("Fetching persons with motorcycles...");
+
+        const response = await fetch('http://localhost:3000/persons/motorcycle');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            location.reload();
+        }
+
+        // Use the fetched data directly
+        const personsMotorcyclesData = await response.json();
+        console.log("Received persons with motorcycles data:", personsMotorcyclesData);
+
+        const tableBody = document.getElementById('motorcycleTable').getElementsByTagName('tbody')[0];
+
+        // Clear existing table rows
+        tableBody.innerHTML = '';
+
+        personsMotorcyclesData.forEach(entry => {
+            const row = tableBody.insertRow();
+            
+            row.insertCell(0).textContent = entry.FirstName;
+            row.insertCell(1).textContent = entry.LastName;
+            row.insertCell(2).textContent = entry.motorcycle|| 'N/A'; 
+            row.insertCell(3).textContent = entry.motorcycleModel;
+            row.insertCell(4).textContent = entry.year;
+            const actionCell = row.insertCell(5);
+           
+
+            const updateButton = document.createElement('button');
+            updateButton.textContent = 'Update';
+            updateButton.addEventListener('click', () => handleUpdate(entry.id));
+            actionCell.appendChild(updateButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => handleDelete(entry.id)); // Assuming id is the person's ID
+            actionCell.appendChild(deleteButton);
+
+            // Adjust based on your actual data structure
+            // Add more motorcycle-related cells as needed
+        });
+
+        
+
+
+    function handleUpdate(personId) {
+    const firstName = prompt('Enter new first name:');
+    const lastName = prompt('Enter new last name:');
+
+    if (firstName && lastName) {
+        $.ajax({
+            type: 'PUT',
+            url: `http://localhost:3000/persons/${personId}`,
+            data: JSON.stringify({ personId, firstName, lastName }),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function(response) {
+                console.log('Person updated successfully:', response);
+                $("#inputFirstName").val("");
+                $("#inputLastName").val("");
+               
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error updating person:', textStatus, errorThrown);
+                console.log(jqXHR.responseText);
+            },
+            complete: function (jqXHR, textStatus) {
+        console.log("AJAX request complete. Status:", textStatus);
+            },
+        });
+    } else {
+        alert('Please provide both first name and last name.');
+    }
+}
+    } catch (error) {
+        console.error('Error fetching persons with motorcycles:', error);
+    }
+}
+
+function handleDelete(personId) {
+    const confirmDelete = confirm('Are you sure you want to delete this person?');
+
+    if (confirmDelete) {
+        $.ajax({
+            type: 'DELETE',
+            url: `http://localhost:3000/persons/${personId}`,
+            success: function(response) {
+                console.log('Person deleted successfully:', response);
+                // Optionally, you can update the UI or reload the data
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error deleting person:', textStatus, errorThrown);
+                console.log(jqXHR.responseText);
+            },
+            complete: function (jqXHR, textStatus) {
+                console.log("AJAX request complete. Status:", textStatus);
+            },
+        });
+    }
+}
+
+            
+        
+
+        
+
+document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('addPersonButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            addPerson();
+            fetchPersonsWithMotorcycles(); // Refresh the table after adding a person
+        });
+
+        fetchPersons();
+        fetchPersonsWithMotorcycles();
+        populateMotorcyclesDropdown();
+    });
+
+    $(document).ready(function () {
+        fetchPersons();
+        fetchPersonsWithMotorcycles();
+    });
+
+    </script>
+</body>
+</html>

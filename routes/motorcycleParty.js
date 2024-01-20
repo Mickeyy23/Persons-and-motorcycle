@@ -9,19 +9,21 @@ let motorcycleParty = {
   attendees: [] // Array to store attendees
 };
 
+// GET endpoint to retrieve all motorcycle parties
 router.get('/', (req, res) => {
-  res.status(200).json(motorcycleParty);
+  // Sending back the list of motorcycle parties
+  res.status(200).json(motorcycleParties);
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { partyName, location, date } = req.body;
 
   if (!partyName || !location || !date) {
     return res.status(400).json({ error: 'Please provide all required information for the motorcycle party.' });
   }
 
-  // Save motorcycle party information
-  motorcycleParty = {
+  // Create a new motorcycle party object
+  const newParty = {
     partyName,
     location,
     date,
@@ -29,7 +31,10 @@ router.post('/', (req, res) => {
   };
 
   // Logging the received party data
-  console.log('Received Motorcycle Party:', motorcycleParty);
+  console.log('Received Motorcycle Party:', newParty);
+
+  // Store the new party in the array (you might replace this with database logic)
+  motorcycleParties.push(newParty);
 
   // Sending back a response
   res.status(200).json({ message: 'Motorcycle party details received successfully.' });
@@ -51,7 +56,7 @@ router.put('/update', (req, res) => {
   console.log('Updated Motorcycle Party:', motorcycleParty);
 
   // Sending back a response
-  res.status(200).json({ message: 'Motorcycle party details updated successfully.' });
+  res.status(200).json(motorcycleParties);
 });
 
 router.delete('/delete', (req, res) => {

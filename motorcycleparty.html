@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level HTML Template by Tooplate</title>
+    <!-- Load stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <link rel="stylesheet" href="css/tooplate-style.css">                                  
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="tm-main-content" id="top">
+        <div class="tm-top-bar-bg"></div>
+        <div class="tm-top-bar" id="tm-top-bar">
+            <!-- Top Navbar -->
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand mr-auto" href="#">
+                            <img src="img/moto.jpg" alt="Site logo">
+                            Moto Veles
+                        </a>
+                        <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="persons.html">Persons</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="motorcycles.html">Motorcycles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="motorcycleparty.html">Motorcycle Party</a>
+                                </li>
+                            </ul>
+                        </div>                            
+                    </nav>            
+                </div>
+            </div>
+        </div>
+        <div class="tm-section tm-bg-img" id="tm-section-1">
+            <div class="tm-bg-white ie-container-width-fix-2">
+                <div class="container ie-h-align-center-fix">
+                    <div class="row">
+                        <div class="col-xs-12 ml-auto mr-auto ie-container-width-fix">
+                            <form action="index.html" method="get" class="tm-search-form tm-section-pad-2">
+                                <div class="form-row tm-search-form-row">
+                                    <div class="form-group tm-form-element tm-form-element-100">
+                                        <i class="fa fa-glass-cheers fa-2x tm-form-element-icon"></i>
+                                        <input name="partyName" type="text" class="form-control" id="partyName" placeholder="Enter the party name...">
+                                    </div>
+                                    <div class="form-group tm-form-element tm-form-element-50">
+                                        <i class="fa fa-map-marker fa-2x tm-form-element-icon"></i>
+                                        <input name="location" type="text" class="form-control" id="location" placeholder="Enter location">
+                                    </div>
+                                    <div class="form-group tm-form-element tm-form-element-50">
+                                        <i class="fa fa-calendar fa-2x tm-form-element-icon"></i>
+                                        <input name="partyDate" type="date" class="form-control" id="date" placeholder="Select Check-Out Date">
+                                    </div>
+                                    <div class="form-group tm-form-element tm-form-element-100">
+                                        <button id="addMotorcyclePartyButton" class="btn btn-primary tm-btn-search">Add Motorcycle Party</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>      
+                </div>
+            </div>                  
+        </div>
+    </div>
+    <div class="tm-section tm-bg-img" id="tm-section-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 ml-auto mr-auto">
+                    <h2>Motorcycles</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Party Name</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="partyTableBody">
+                            <!-- Table rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Load JS files -->
+    <script src="js/jquery-1.11.3.min.js"></script>             
+    <script src="js/popper.min.js"></script>                    
+    <script src="js/bootstrap.min.js"></script>                 
+    <script src="js/datepicker.min.js"></script>                
+    <script src="js/jquery.singlePageNav.min.js"></script>      
+    <script src="slick/slick.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+        
+        function setPageNav(){
+            if($(window).width() > 991) {
+                $('#tm-top-bar').singlePageNav({
+                    currentClass:'active',
+                    offset: 79
+                });   
+            }
+            else {
+                $('#tm-top-bar').singlePageNav({
+                    currentClass:'active',
+                    offset: 65
+                });   
+            }
+        }
+
+        // Function to handle the form submission for adding a new motorcycle party
+$(document).ready(function () {
+    $("#addMotorcyclePartyButton").click(function (event) {
+        console.log("Button clicked!");
+        event.preventDefault();
+
+        // Get data from the form
+        var partyData = {
+            partyName: $("#partyName").val(),
+            location: $("#location").val(),
+            date: $("#date").val()
+        };
+
+        // Check if all required fields are provided
+        if (partyData.partyName && partyData.location && partyData.date) {
+            // Make an AJAX request to add the motorcycle party
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/motorcycle-party",
+                data: JSON.stringify(partyData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log("Motorcycle party added successfully:", response);
+                    updatePartyTable(response); // Assuming this function updates the party table
+                     location.reload();
+
+                    // Clear the input fields
+                    $("#partyName").val("");
+                    $("#location").val("");
+                    $("#date").val("");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error adding motorcycle party:", textStatus, errorThrown);
+                }
+            });
+        } else {
+            // Handle the case where any required field is not provided
+            alert("Please provide all required information for the motorcycle party.");
+        }
+    });
+});
+        
+
+        // Function to update the party table with new data
+        function updatePartyTable(party) {
+            var newRow = $("<tr>");
+            newRow.append("<td>" + party.partyName + "</td>");
+            newRow.append("<td>" + party.location + "</td>");
+            newRow.append("<td>" + party.date + "</td>");
+            $("#partyTableBody").append(newRow);
+        }
+    
+// Function to get party data
+async function getParties() {
+    try {
+        // Make an AJAX request to the API endpoint for fetching parties
+        const response = await $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/motorcycle-party",
+            dataType: "json",
+            success: function (response) {
+                console.log("Party data retrieved successfully:", response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error getting party data:", textStatus, errorThrown);
+                console.log("Error details:", jqXHR);
+            },
+            complete: function (jqXHR, textStatus) {
+                console.log("AJAX request complete. Status:", textStatus);
+            },
+        });
+
+        // Clear the existing rows in the table
+        $("#partyTableBody").empty();
+
+        // Append a row to the table using direct property access
+        var newRow = $("<tr>");
+        newRow.append("<td>" + response.partyName + "</td>");
+        newRow.append("<td>" + response.location + "</td>");
+        newRow.append("<td>" + response.date + "</td>");
+        $("#partyTableBody").append(newRow);
+    } catch (error) {
+        console.error("Error getting party data:", error);
+    }
+}
+
+// Call these functions when the page is loaded
+$(document).ready(function () {
+    console.log("Document is ready!");
+
+    // Call the function to get party data
+    getParties();
+
+    $("#addPartyButton").click(function (event) {
+        console.log("Button clicked!");
+        event.preventDefault();
+
+        // Get the values from the input fields
+        var partyName = $("#inputPartyName").val();
+        var location = $("#inputLocation").val();
+        var date = $("#inputCheckOut").val();
+
+        // Check if all required fields are provided
+        if (partyName && location && date) {
+            // Create a data object with the form values
+            var formData = {
+                partyName: partyName,
+                location: location,
+                date: date
+            };
+
+            console.log("Request Payload:", formData);
+
+            // Call the function to add a party
+            addParty(formData);
+        } else {
+            // Handle the case where any required field is not provided
+            alert("Please provide all required information for the party.");
+        }
+    });
+});
+        $(document).ready(function(){
+            $(window).on("scroll", function() {
+                if($(window).scrollTop() > 100) {
+                    $(".tm-top-bar").addClass("active");
+                } else {
+                    $(".tm-top-bar").removeClass("active");
+                }
+            });      
+        });
+
+        setCarousel();
+        setPageNav();
+
+        $(window).resize(function() {
+            setCarousel();
+            setPageNav();
+        });
+
+        $('.nav-link').click(function(){
+            $('#mainNav').removeClass('show');
+        });
+    </script>
+</body>
+</html>
